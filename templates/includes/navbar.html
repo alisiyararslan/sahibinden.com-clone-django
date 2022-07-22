@@ -1,0 +1,43 @@
+
+<nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
+      <a class="navbar-brand" href="{%  url 'index'  %}">sahibinden.com</a><!--/             -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto"><!-- mr aouto sola yaslar     /           -->
+          <li class="nav-item active">
+            <a class="nav-link" href="{%  url 'about'  %}">Hakkımızda </a><!--/about    -->
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="{%  url 'advert:adverts'  %}">İlanlar <span class="sr-only">(current)</span></a><!--/articles     -->
+          </li>
+        </ul>
+
+
+        <ul class="navbar-nav ml-auto"><!-- mr aouto sola yaslar-->
+        {% if request.user.is_authenticated %}
+        <li class="nav-item active">
+            <a class="nav-link" href="{%  url 'advert:dashboard'  %}">Kontrol Paneli </a><!--/adverts/dashboard                    -->
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="{%  url 'user:logout'  %}">Çıkış Yap </a><!--/user/logout                   -->
+          </li>
+        {% else %}
+        <li class="nav-item active">
+            <a class="nav-link" href="{%  url 'user:login'  %}">Giriş Yap </a><!--/user/login               -->
+          </li>
+        {% endif %}
+          <li class="nav-item active">
+            <a class="nav-link" href="{%  url 'user:register'  %}">Kayıt Ol </a><!--/user/register                     -->
+          </li>      
+        </ul>
+
+
+
+
+
+        
+        
+      </div>
+    </nav>

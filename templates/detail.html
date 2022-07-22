@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div class="row">
+                <div class="col-lg-8">
+                    <!-- Post content-->
+                    <article>
+                        <!-- Post header-->
+                        <header class="mb-4">
+                            <!-- Post title-->
+                            <h1 class="fw-bolder mb-1">{{advert.title}}</h1>
+                            <!-- Post meta content-->
+                            
+                            
+                        </header>
+                        <!-- Preview image figure-->
+                        {% if advert.advert_image %}
+                        <figure class="mb-4"><img class="img-fluid rounded" src="{{advert.advert_image.url}}" alt="..."></figure>
+                        
+                        {% endif %}
+                         
+                        <!-- Post content-->
+                        <p class="lead">{{advert.content| safe}}</p>
+                        <div class="text-muted fst-italic mb-2">İlan Fiyatı :  {{advert.price}}</div>
+                        <div class="text-muted fst-italic mb-2">Marka :  {{advert.marka}}</div>
+                        <div class="text-muted fst-italic mb-2">Model :  {{advert.model}}</div>
+                        
+                        <div class="text-muted fst-italic mb-2">İlan Sahibi :  {{advert.author.username}}</div>
+                        <div class="text-muted fst-italic mb-2">İlan Tarihi : {{advert.created_date}} </div>
+                        
+                    </article>
+
+
+                    
+
+                    
+
+
+
+           
+
+                    
+                </div>
+                
+            </div>
+
+{% endblock body %}

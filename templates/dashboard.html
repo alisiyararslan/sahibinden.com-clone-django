@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<h3>Kontrol Paneli</h3>
+<hr>
+<p>
+Hoşgeldiniz, <small>{{request.user.username}}</small>
+</p>
+<hr>
+<a  class="btn btn-danger" href="/adverts/addadvert">İlan Ekle</a>
+<hr>
+
+{% if adverts %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Resim</th>
+      <th scope="col">Başlık</th>
+      <th scope="col">Araç Sahibi</th>
+      <th scope="col">Fiyat</th>
+      <th scope="col">Marka</th>
+      <th scope="col">Model</th>
+      <th scope="col">Tarih</th>
+      <th scope="col">Güncelle</th>
+      <th scope="col">Sil</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for advert in adverts  %}
+        <tr>
+        <th scope="row">{{advert.id}}</th><!--/about -->
+        <td>{% if advert.advert_image %}
+                        <!-- /articles/article/{{article.id}}-->
+                        <a href="/adverts/advert/{{advert.id}}"><figure class="mb-4"><img class="img-fluid rounded" src="{{advert.advert_image.url}}" width="150" height="125" alt="..."></figure></a>
+                        
+                        {% endif %}</td>
+        <td><a href="/adverts/advert/{{advert.id}}">{{advert.title}}</a></td>
+        <td>{{advert.author.username}}</td>
+        <td>{{advert.price}}</td>
+        <td>{{advert.marka}}</td>
+        <td>{{advert.model}}</td>
+        <td>{{advert.created_date}}</td>
+        <td><a href="/adverts/update/{{advert.id}}" class="btn btn-success">Güncelle</a></td>
+        <td><a href="/adverts/delete/{{advert.id}}" class="btn btn-danger">Sil</a></td>
+        </tr>
+    
+    {% endfor %}
+  </tbody>
+</table>
+
+{% else %}
+
+<div class="alert alert-danger">
+    Henüz makaleniz bulunmuyor...
+</div>
+{% endif %}
+
+
+
+
+{% endblock body %}

@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+
+
+<div class="row">
+<div class="col-md-10 offset-md-3">
+<div class="col-lg-8">
+<h3>İlanlar</h3>
+<hr>
+<form ><!-- methodu buraya yazamadığın sürece get-->
+{% csrf_token %}
+<input type="text" name="keyword"class="input-sm" placeholder="Ara..." maxlength="64" >
+<button type="submit" class="btn btn-outline-info" style="">Ara</button>
+</form>
+<hr>
+</div>
+</div>
+</div>
+
+{% if adverts %}
+
+{% for advert in adverts  %}
+
+<div class="row">
+<div class="col-md-10 offset-md-3">
+                <div class="col-lg-8">
+                    <!-- Post content-->
+                    <!-- <article>-->
+                        <!-- Post header-->
+                        <header class="mb-4">
+                            <!-- Post title-->
+                            <a href="{% url 'advert:detail' advert.id %}"> <h2 class="fw-bolder mb-1">{{advert.title}}</h2></a>
+                            <!-- Post meta content-->
+                            <div class="text-muted fst-italic mb-2">Posted on {{advert.created_date}} by {{advert.author.username}}</div>
+                            
+                        </header>
+                        <!-- Preview image figure-->
+                        {% if advert.advert_image %}
+                        <!-- /articles/article/{{article.id}}-->
+                        <a href="{% url 'advert:detail' advert.id %}"><figure class="mb-4"><img class="img-fluid rounded" src="{{advert.advert_image.url}}" alt="..."></figure></a>
+                        
+                        {% endif %}
+                        
+                        <!-- Post content-->
+                        <p class="lead">{{advert.content| safe|truncatewords:50}}</p>
+                        <br><br><br>
+                        <a style="float : right;" href="{% url 'advert:detail' advert.id %}" class="btn btn-danger">Devamını Oku</a>
+                        <hr>
+                    <!-- </article>-->
+                    
+                </div>
+                
+            </div>
+            </div>
+
+{% endfor %}
+
+{% else %}
+
+<div class="row">
+<div class="col-md-10 offset-md-3">
+<div class="col-lg-8">
+
+<div class="alert alert-danger">İlan bulunamdı</div>
+</div>
+</div>
+</div>
+{% endif %}
+
+{% endblock body %}
+
